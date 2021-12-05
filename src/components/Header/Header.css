@@ -13,3 +13,10 @@
     color: white;
     z-index: 100; /*always stays on the top*/
 }
+
+@media (max-width:1000px){
+    .header {
+    padding-top: 15px;
+    font-size: 6.4vw;
+    }
+}
