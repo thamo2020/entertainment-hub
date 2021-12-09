@@ -1,13 +1,18 @@
 
 import './App.css';
 import Header from './components/Header/Header';
+import SimpleBottomNavigation from './components/mainNav';
 
 function App() {
   return (
-    <div className="App">
-     <Header />
+    <>
+    <Header />
+    <div className="app">
+     <SimpleBottomNavigation />
     </div>
+    </>
   );
+
 }
 
 export default App;
