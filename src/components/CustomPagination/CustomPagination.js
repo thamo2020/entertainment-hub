@@ -1,15 +1,23 @@
 import React from 'react'
 import Pagination from '@mui/material/Pagination';
 
-const CustomPagination = () => {
 
     
-
+    export default function CustomPagination({ setPage, numOfPages = 10 }) {
+        // Scroll to top when page changes
+        const handlePageChange = (page) => {
+          setPage(page);
+          window.scroll(0, 0);
+        };
+    
     return (
         <div>
-            <Pagination onChange />
+            <Pagination 
+             
+            onChange={(e) => handlePageChange(e.target.textContent) } 
+            count={numOfPages}
+            />
         </div>
-    )
-}
-
-export default CustomPagination
+    );
+    
+};
