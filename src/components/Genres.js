@@ -32,9 +32,10 @@ const Genres = ( {
       
     return (
         <div style={{ padding: "6px 0" }}>
-           {genres && genres.map((genre) => <Chip label = {genre.name} />)} 
+            
+           {genres && genres.map((genre) => <Chip label = {genre.name} style={{background:"white", margin:2, size:"small", variant:"outlined"}} />)} 
         </div>
     );
 };
-
+//map it from the genres component
 export default Genres;
