@@ -1,11 +1,11 @@
 
 import { Container } from '@material-ui/core';
-import Search from '@mui/icons-material/Search';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Header from './components/Header/Header';
 import SimpleBottomNavigation from './components/mainNav';
 import Movies from './pages/Movies/Movies';
+import Search from './pages/Search/Search';
 import Series from './pages/Series/Series';
 import Trending from './pages/Trending/Trending';
 
