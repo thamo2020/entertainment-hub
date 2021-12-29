@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     width: "90%",
-    height: "80%",
+    height: "100%",
     backgroundColor: "#39445a",
     border: "1px solid #282c34",
     borderRadius: 10,
@@ -41,19 +41,21 @@ export default function ContentModal({children, media_type,id}) {
   const [content, setContent] = useState();
   const [video, setVideo] = useState();
 
+  const fetchData = async () => {
+    const { data } = await axios.get(
+      `https://api.themoviedb.org/3/${media_type}/${id}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
+    );
+    setContent(data);
+    };
+
   const fetchVideo = async () => {
     const { data } = await axios.get(
       `https://api.themoviedb.org/3/${media_type}/${id}/videos?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
     );
     setVideo(data.results[0]?.key);
   }
-
-  const fetchData = async () => {
-    const { data } = await axios.get(
-      `https://api.themoviedb.org/3/${media_type}/${id}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
-    );
-    setContent(data);
-    }
+;
+  
   useEffect(() => {
     fetchData();
 
@@ -63,11 +65,19 @@ export default function ContentModal({children, media_type,id}) {
 
 
   return (
-    <div>
-      <Button onClick={handleOpen} className='media'>{children}</Button>
+    <>
+      <div
+        className="media"
+        style={{ cursor: "pointer" }}
+        color="inherit"
+        onClick={handleOpen}
+      >
+        {children}
+      </div>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
+        className={classes.modal}
         open={open}
         onClose={handleClose}
         closeAfterTransition
@@ -115,10 +125,8 @@ export default function ContentModal({children, media_type,id}) {
                   <span className="ContentModal__description">
                     {content.overview}
                   </span>
-
-                  <div>
-                    <Carousel id={id} media_type={media_type} />
-                  </div>
+                    
+                  <span></span>
 
                   <Button
                     variant="contained"
@@ -135,6 +143,6 @@ export default function ContentModal({children, media_type,id}) {
           )}
         </Fade>
       </Modal>
-    </div>
+    </>
   );
 }
